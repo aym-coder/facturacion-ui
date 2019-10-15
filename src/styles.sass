@@ -1,0 +1,90 @@
+@import '~ngx-toastr/toastr.css'
+
+#toast-container > div
+    opacity: 1
+
+$primary: #26a69a
+$primary-light: #64d8cb
+$primary-dark: #00766c
+    
+$light-gray: #f5f5f6
+$gray: #e1e2e1
+$error-red: red
+
+.light-gray-bg
+    background-color: $light-gray
+
+
+body
+    background-color: $light-gray !important
+
+.gray-border-bottom
+    border-bottom: 1px solid #dee2e6;
+
+// INPUTS
+
+.input-error
+    position: absolute
+    top: 52px
+    font-size: 15px
+    color: $error-red
+
+.icon-input-error
+    position: absolute
+    top: 52px
+    left: 60px
+    font-size: 15px
+    color: $error-red
+
+.input-error-border
+    border-color: $error-red !important
+    border-radius: 0.25rem !important
+
+.icon-input-error-border
+    border-color: $error-red !important
+    border-top-right-radius: 0.25rem !important
+    border-bottom-right-radius: 0.25rem !important
+
+// TABLES
+
+.collections-container
+    height: 85vh
+    overflow-x: hidden
+    overflow-y: auto
+    @media screen and (max-height: 850px)
+        height: 79vh
+    @media screen and (max-height: 750px)
+        height: 76vh
+    @media screen and (max-height: 700px)
+        height: 74vh
+    @media screen and (max-height: 600px)
+        height: 70vh
+    @media screen and (max-height: 500px)
+        height: 65vh
+    @media screen and (max-height: 400px)
+        height: 47vh
+
+.collection-container
+    height: 82vh
+    overflow-x: hidden
+    overflow-y: auto
+    @media screen and (max-height: 850px)
+        height: 74vh
+    @media screen and (max-height: 750px)
+        height: 71vh
+    @media screen and (max-height: 700px)
+        height: 69vh
+    @media screen and (max-height: 600px)
+        height: 56vh
+    @media screen and (max-height: 500px)
+        height: 50vh
+    @media screen and (max-height: 400px)
+        height: 44vh
+
+// .form-control:focus 
+//     border-color: $primary-light !important
+//     box-shadow: 0 0 0 0.2rem rgba(38, 166, 154, 0.25) !important
+
+// .btn-primary
+//     background-color: $primary !important
+//     border-color: $primary-dark !important

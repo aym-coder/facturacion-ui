@@ -1,0 +1,112 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="!loading && element" class="row mb-1 pb-2 gray-border-bottom">
+  <div class="col-md col-12 text-center text-md-left">
+    <h4>
+      {{element.name}}
+    </h4>
+    <span [innerHTML]="getCollectionType(element.type)"></span>
+  </div>
+  <div class="col-md col-12 text-center text-md-right">
+      <button class="btn btn-primary m-1 mt-md-0 mb-md-0" data-toggle="modal" data-target="#newObjectModal">
+        <i class="fas fa-plus"></i> Nuevo Artículo
+      </button>
+      <button class="btn btn-primary m-1 mt-md-0 mb-md-0" data-toggle="modal" data-target="#newCollectionModal">
+        <i class="fas fa-plus"></i> Nueva Colección
+      </button>
+  </div>
+</div>
+
+<div *ngIf="!loading && element" class="collection-container">
+  <div *ngIf="!element.objects.length" class="w-100 text-center mt-1">
+    <i class="fas fa-folder-plus" style="font-size: 100px"></i>
+    <h3>
+      Esta colección aún esta vacia.
+      <br>
+      Crea otra colección o un artículo.
+    </h3>
+  </div>
+
+  <div class="row" *ngIf="element.objects.length">
+    <div class="col-xl-3 col-lg-6 col-sm-12 col-md-6" *ngFor="let object of element.objects">
+        <div class="card m-2" style="cursor: pointer;">
+            <!-- (click)="changeCollection(collection._id)" -->
+          <span style="position: absolute; right: 10px; top: 5px;">
+            <i class="fas fa-ellipsis-v"></i>
+          </span>
+          <div class="card-body">
+            <h5 class="card-title">{{object.name}}</h5>
+            <div class="card-img-top" [innerHTML]="getCollectionType(collection.type)"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEW OBJECT -->
+<div class="modal fade" id="newObjectModal" tabindex="-1" role="dialog" aria-labelledby="newObjectModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Artículo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeObjectModal>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+          <form class="ng-form form-box" id="newObjectForm" name="newObjectForm" (ngSubmit)="objectForm.form.valid && createObject(closeObjectModal, objectForm)" #objectForm="ngForm" novalidate autocomplete="off">
+
+            <div class="input-group p-3">  
+              <input class="form-control"
+              [ngClass]="{ 'input-error-border': (objectForm.submitted && !objectName.value) }"
+              type="text" id="objectName" placeholder="Nombre" name="objectName" [(ngModel)]="newObject.name"
+              #objectName="ngModel" required aria-describedby="basic-addon1">
+
+              <div class="input-error" *ngIf="objectForm.submitted && !objectName.value">
+                Ingresa un nombre.
+              </div>
+
+            </div>
+            <div class="input-group p-3">  
+              <input class="form-control"
+              [ngClass]="{ 'input-error-border': (objectForm.submitted && !objectImg.value) }"
+              type="text" id="objectImg" placeholder="Link de Imagen" name="objectImg" [(ngModel)]="newObject.img"
+              #objectImg="ngModel" required aria-describedby="basic-addon1">
+
+              <div class="input-error" *ngIf="objectForm.submitted && !objectImg.value">
+                Ingresa el link de imagen.
+              </div>
+
+            </div>
+            <div class="input-group p-3">
+              <select class="form-control" id="objectStatus" placeholder="Estado" name="objectStatus"
+              [(ngModel)]="newObject.status" #objectStatus="ngModel">
+                <option value="0">Deseado</option>
+                <option value="1">Adquirido</option>
+              </select>
+            </div>
+
+            <div class="input-group p-3" *ngIf="newObject.status === '1'">  
+                <input class="form-control"
+                [ngClass]="{ 'input-error-border': (objectForm.submitted && !objectAmount.value) }"
+                type="number" id="objectAmount" placeholder="Cantidad (artículos iguales que tienes)"
+                name="objectAmount" [(ngModel)]="objectAmount.img"
+                #objectAmount="ngModel" min="1" required aria-describedby="basic-addon1">
+
+                <div class="input-error" *ngIf="objectForm.submitted && !objectAmount.value">
+                  Ingresa una cantidad mayor a 0.
+                </div>
+  
+              </div>
+
+          </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" form="newObjectForm" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

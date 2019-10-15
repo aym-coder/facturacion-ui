@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Variado", "icon": "<i class='fas fa-shapes'></i>"},
+    { "id": 2, "name": "Videojuegos", "icon": "<i class='fas fa-gamepad'></i>"},
+    { "id": 3, "name": "Figuras", "icon": "<i class='fas fa-walking'></i>"}
+]
+    

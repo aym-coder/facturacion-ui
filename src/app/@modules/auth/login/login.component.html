@@ -1,0 +1,77 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="row d-flex justify-content-center align-items-center" style="height: 100vh;">
+  
+  <div class="col-12">
+    <div class="row shadow-lg d-flex justify-content-center align-items-center login-container align-items-center">
+        <!-- <div class="col-12 col-lg">
+            <div>
+              <h3 class="text-center">GESTIONA TUS COLECCIONES</h3>
+              <br>
+              <p class="text-justify">
+                  Controla que objetos tienes, añade objetos que desearias.
+              </p>
+            </div>
+          </div> -->
+          <div class="col-12 col-lg">
+            <div class="d-flex justify-content-center">
+              <div class="card" style="width: 25rem;">
+                <div class="card-header">
+                  Inicia Sesión
+                </div>
+                <form class="ng-form form-box" name="login" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate autocomplete="off">
+        
+                  <div class="input-group p-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                          <i class="fas fa-envelope"></i>
+                      </span>
+                    </div>
+                    
+                    <input class="form-control"
+                    [ngClass]="{ 'icon-input-error-border': (f.submitted && !email.value) || (f.submitted && email.value && !email.valid) }"
+                    type="email" id="email" placeholder="Email" name="email" [(ngModel)]="user.email"
+                    #email="ngModel" required email aria-label="Email" aria-describedby="basic-addon1">
+                    
+                    <div class="icon-input-error" *ngIf="f.submitted && !email.value">
+                      Ingresa un email.
+                    </div>
+                    <div class="icon-input-error" *ngIf="f.submitted && email.value && !email.valid">
+                      Ingresa un email válido.
+                    </div>
+                  </div>
+                  <div class="input-group p-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                          <i class="fas fa-unlock-alt"></i>
+                      </span>
+                    </div>
+                    
+                    <input type="password" class="form-control " id="password" name="password"
+                    [ngClass]="{ 'icon-input-error-border': f.submitted && !password.value }"
+                    [(ngModel)]="user.password" #password="ngModel" required placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
+                    
+                    <div class="icon-input-error" *ngIf="f.submitted && !password.value">
+                      Ingresa una contraseña.
+                    </div>
+                    <!-- <div class="icon-input-error" *ngIf="f.submitted && generalError">generalError</div> -->
+                  </div>
+                  <div class="input-group p-3 d-block text-center">
+                    <input class="btn btn-primary" type="submit" value="Entrar"/>
+                    <br>
+                    <a href="">Recupera tu Contraseña</a>
+                  </div>
+                
+                </form>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-center">
+                    ¿No tienes una cuenta? <a href="">Registrate</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+</div> 
